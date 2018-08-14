@@ -22,7 +22,7 @@ class WeeklyProcessor extends Base implements Processor
 
         $this->dates[] = [ 'startDate' => $sd, 'endDate' => $ed];
 
-        if ( !$final->eq($sd) ) {
+        if ( $final->ne($sd) ) {
             $this->addWeek($final, $sd);
         }
 

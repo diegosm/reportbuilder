@@ -46,11 +46,11 @@ class WeeklyProcessorTest extends TestCase
             $start = Carbon::now()->subDays(rand(21, 80));
             $end = Carbon::now()->subDays(rand(0, 20));
 
-            $final = (clone $end)->startOfWeek()->addDays(6)->endOfDay();
+            $expected = (clone $end)->startOfWeek()->addDays(6)->endOfDay();
 
             $dates = (new WeeklyProcessor($start, $end, $startWeek))->make();
 
-            $this->assertEquals($final, end($dates)['endDate']);
+            $this->assertEquals($expected, end($dates)['endDate']);
 
         }
 
