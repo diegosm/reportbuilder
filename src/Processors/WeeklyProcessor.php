@@ -1,0 +1,67 @@
+<?php
+
+namespace ReportBuilder\Processors;
+
+use Carbon\Carbon;
+use ReportBuilder\Contracts\Processor;
+use ReportBuilder\Processors\Processor as Base;
+
+
+class WeeklyProcessor extends Base implements Processor
+{
+
+    protected $dates = [];
+
+    public function make(): array
+    {
+
+        $final = $this->getFinalDate();
+
+        $sd = (clone $this->startDate)->startOfWeek();
+        $ed = (clone $sd)->addDays(6)->endOfDay();
+
+        $this->dates[] = [ 'startDate' => $sd, 'endDate' => $ed];
+
+        if ( !$final->eq($sd) ) {
+            $this->addWeek($final, $sd);
+        }
+
+        return $this->dates;
+    }
+
+    /**
+     * return date to stop loop
+     * @return Carbon
+     */
+    private function getFinalDate()
+    {
+        return (clone $this->endDate)->startOfWeek()->startOfDay();
+    }
+
+    /**
+     * Recursive method to verify if needed adds a week
+     * @param $final
+     * @param $current
+     */
+    private function addWeek($final, $current)
+    {
+
+        $start = (clone $current)->addWeek(1);
+        $end   = (clone $start)->addDays(6)->endOfDay();
+
+        $this->dates[$this->getIndice()]['startDate'] = $start;
+        $this->dates[$this->getIndice()]['endDate'] = $end;
+
+        if ( $final->ne($start) ) {
+            $this->addWeek($final, $start);
+        }
+
+    }
+
+
+    private function getIndice()
+    {
+        return count($this->dates) + 1;
+    }
+
+}
