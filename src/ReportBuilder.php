@@ -61,7 +61,24 @@ class ReportBuilder {
     }
 
     /**
+     * Can add many reportable at once
+     *
+     * @param array $array
+     * @return $this
+     */
+    public function addReportables(array $array) : self
+    {
+
+        foreach ( $array as $class => $methods) {
+            $this->addReportable($class, $methods);
+        }
+
+        return $this;
+    }
+
+    /**
      * Increase parameters
+     *
      * @param array $parameters
      * @return ReportBuilder
      */

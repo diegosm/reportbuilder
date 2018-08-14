@@ -9,6 +9,7 @@ use ReportBuilder\Processors\MonthlyProcessor;
 use ReportBuilder\Processors\WeeklyProcessor;
 use ReportBuilder\ReportableCollection;
 use ReportBuilder\ReportBuilder;
+use Test\Utilities\FakeRepository;
 
 class ReportBuilderTest extends TestCase
 {
@@ -53,6 +54,23 @@ class ReportBuilderTest extends TestCase
 
         $parameters = getProtectedValue($this->builder, 'parameters');
         $this->assertEquals([ 'key' => 'value'], $parameters);
+    }
+
+
+    public function testShouldAddArrayOfReportables()
+    {
+
+        $reportables = [
+            'FakeRepository::class' => ['all', 'between'],
+            'OtherClass::class' => 'myMethod'
+        ];
+
+        $this->builder->addReportables($reportables);
+
+        $expected = getProtectedValue($this->builder, 'reportables');
+
+        $this->assertEquals($expected->get(), $reportables);
+
     }
 
 }
