@@ -46,11 +46,13 @@ class WeeklyProcessor extends Base implements Processor
     private function addWeek($final, $current)
     {
 
+        $i = $this->getIndice();
+
         $start = (clone $current)->addWeek(1);
         $end   = (clone $start)->addDays(6)->endOfDay();
 
-        $this->dates[$this->getIndice()]['startDate'] = $start;
-        $this->dates[$this->getIndice()]['endDate'] = $end;
+        $this->dates[$i]['startDate'] = $start;
+        $this->dates[$i]['endDate'] = $end;
 
         if ( $final->ne($start) ) {
             $this->addWeek($final, $start);
