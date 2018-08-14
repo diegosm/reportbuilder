@@ -60,8 +60,8 @@ class ReportResultsTest extends TestCase
         $results = (new ReportResults($reportables))->results();
 
         $this->assertEquals([ 'results' => [
-                                                'Test\Utilities\FakeRepository' => 'simple'
-                                            ]
+            'Test\Utilities\FakeRepository' => 'simple'
+        ]
         ], $results);
     }
 
@@ -72,8 +72,8 @@ class ReportResultsTest extends TestCase
         $results = (new ReportResults($reportables))->setParameters(['param' => 'value'])->results();
 
         $this->assertEquals([ 'results' => [
-                                                'Test\Utilities\FakeRepository' =>  'value'
-                                            ]
+            'Test\Utilities\FakeRepository' =>  'value'
+        ]
         ], $results);
 
     }

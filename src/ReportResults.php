@@ -63,7 +63,7 @@ class ReportResults
         
         $data = [];
 
-        for ( $x=0; $x<count($this->dates); $x++) {
+        for ( $x=0; $x < count($this->dates); $x++) {
 
             foreach ( $this->reportables->get() as $reportable  => $methods ) {
 
@@ -112,18 +112,18 @@ class ReportResults
      *
      * @param $class
      * @param $method
-     * @param $dateStart
-     * @param $dateEnd
+     * @param $startDate
+     * @param $endDate
      * @return mixed
      */
-    private function getResult ($class, $method, $dateStart = null, $dateEnd = null)
+    private function getResult ($class, $method, $startDate = null, $endDate = null)
     {
 
         // Get Parameters from class and method
         $rClass = (new \ReflectionClass(new $class));
         $rClassParameters = $rClass->getMethod($method)->getParameters();
 
-        $parameters = $this->getParameters($dateStart, $dateEnd);
+        $parameters = $this->getParameters($startDate, $endDate);
 
         $parameters2Method = [];
 

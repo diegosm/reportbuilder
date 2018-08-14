@@ -63,7 +63,7 @@ class WeeklyProcessor extends Base implements Processor
 
     private function getIndice()
     {
-        return count($this->dates) + 1;
+        return count($this->dates);
     }
 
 }
