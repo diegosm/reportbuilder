@@ -19,7 +19,7 @@ class ReportBuilderTest extends TestCase
     protected function setUp()
     {
         $this->builder = new ReportBuilder();
-        $this->builder->addPeriod(Carbon::now(), Carbon::now()->addDays(5), null, 1);
+        $this->builder->addPeriod(Carbon::parse("2018-10-11"), Carbon::parse("2018-10-16"), null, 1);
         parent::setUp();
     }
 
@@ -36,7 +36,7 @@ class ReportBuilderTest extends TestCase
 
     public function testShouldAddPeriodWithMonthlyProcessor()
     {
-        $this->builder->addPeriod(Carbon::now(), Carbon::now()->addDays(40), MonthlyProcessor::class, 0);
+        $this->builder->addPeriod(Carbon::parse("2018-11-22"), Carbon::parse("2018-12-20"), MonthlyProcessor::class, 0);
         $dates = getProtectedValue($this->builder, 'datesInterval');
         $this->assertEquals(2, count($dates));
     }
