@@ -2,12 +2,11 @@
 
 namespace ReportBuilder;
 
-
 class ReportableCollection
 {
     private $items = [];
 
-    public function add ( $class, $methods)
+    public function add($class, $methods)
     {
         $this->items[$class] = $methods;
         return $this;
@@ -17,5 +16,4 @@ class ReportableCollection
     {
         return $this->items;
     }
-
 }

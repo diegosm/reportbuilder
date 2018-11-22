@@ -2,7 +2,6 @@
 
 namespace Test\Unit;
 
-
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use ReportBuilder\Processors\DailyProcessor;
@@ -12,7 +11,6 @@ use ReportBuilder\Factories\ReportBuilderFactory;
 
 class ReportBuilderFactoryTest extends TestCase
 {
-
     protected function setUp()
     {
         parent::setUp();

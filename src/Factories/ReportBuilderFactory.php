@@ -2,7 +2,6 @@
 
 namespace ReportBuilder\Factories;
 
-
 use Carbon\Carbon;
 use ReportBuilder\Processors\DailyProcessor;
 use ReportBuilder\Processors\MonthlyProcessor;
@@ -10,14 +9,13 @@ use ReportBuilder\Processors\WeeklyProcessor;
 
 class ReportBuilderFactory
 {
-
     public static function create(Carbon $startDate, Carbon $endDate, $firstDayWeek=0)
     {
         $days = $startDate->diffInDays($endDate);
 
-        switch($days) {
+        switch ($days) {
 
-            case ($days > 30 ) :
+            case ($days > 30):
                 return new MonthlyProcessor($startDate, $endDate, $firstDayWeek);
             break;
 
@@ -28,6 +26,5 @@ class ReportBuilderFactory
             default:
                 return new DailyProcessor($startDate, $endDate, $firstDayWeek);
         }
-
     }
 }

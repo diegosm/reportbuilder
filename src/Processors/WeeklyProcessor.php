@@ -6,15 +6,12 @@ use Carbon\Carbon;
 use ReportBuilder\Contracts\Processor;
 use ReportBuilder\Processors\Processor as Base;
 
-
 class WeeklyProcessor extends Base implements Processor
 {
-
     protected $dates = [];
 
     public function make(): array
     {
-
         $final = $this->getFinalDate();
 
         $sd = (clone $this->startDate)->startOfWeek();
@@ -22,7 +19,7 @@ class WeeklyProcessor extends Base implements Processor
 
         $this->dates[] = [ 'startDate' => $sd, 'endDate' => $ed];
 
-        if ( $final->ne($sd) ) {
+        if ($final->ne($sd)) {
             $this->addWeek($final, $sd);
         }
 
@@ -45,7 +42,6 @@ class WeeklyProcessor extends Base implements Processor
      */
     private function addWeek($final, $current)
     {
-
         $i = $this->getIndice();
 
         $start = (clone $current)->addWeek(1);
@@ -54,10 +50,9 @@ class WeeklyProcessor extends Base implements Processor
         $this->dates[$i]['startDate'] = $start;
         $this->dates[$i]['endDate'] = $end;
 
-        if ( $final->ne($start) ) {
+        if ($final->ne($start)) {
             $this->addWeek($final, $start);
         }
-
     }
 
 
@@ -65,5 +60,4 @@ class WeeklyProcessor extends Base implements Processor
     {
         return count($this->dates);
     }
-
 }

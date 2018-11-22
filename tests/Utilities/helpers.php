@@ -1,6 +1,6 @@
 <?php
 
-function getProtectedValue ($instance, $property )
+function getProtectedValue($instance, $property)
 {
     $reflector = new \ReflectionClass($instance);
     $reflector_property = $reflector->getProperty($property);
@@ -9,7 +9,7 @@ function getProtectedValue ($instance, $property )
     return $reflector_property->getValue($instance);
 }
 
-function getConstant ( $instance, $property )
+function getConstant($instance, $property)
 {
     $object = new \ReflectionClass($instance);
     return $object->getConstant($property);

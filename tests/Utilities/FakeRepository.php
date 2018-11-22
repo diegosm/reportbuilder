@@ -2,10 +2,8 @@
 
 namespace Test\Utilities;
 
-
 class FakeRepository
 {
-
     public function between($startDate=null, $endDate=null)
     {
         return [
@@ -17,7 +15,6 @@ class FakeRepository
 
     public function popular($startDate=null, $endDate=null, $param=null)
     {
-
         return [
             'data' => 'FakeRepository > popular',
             'startDate' => isset($startDate) ? $startDate->format('d/m/Y 00:00:00') : $startDate,

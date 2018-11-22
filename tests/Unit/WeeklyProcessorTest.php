@@ -7,21 +7,19 @@ use PHPUnit\Framework\TestCase;
 use ReportBuilder\Contracts\Processor;
 use ReportBuilder\Processors\WeeklyProcessor;
 
-
 class WeeklyProcessorTest extends TestCase
 {
-
     protected $processor;
 
     protected function setUp()
     {
-        $this->processor = new WeeklyProcessor(Carbon::createFromDate(2018, 7, 31), Carbon::createFromDate(2018,8,6), 0);
+        $this->processor = new WeeklyProcessor(Carbon::createFromDate(2018, 7, 31), Carbon::createFromDate(2018, 8, 6), 0);
         parent::setUp();
     }
 
     public function testMustImplementProcessorContract()
     {
-       $this->assertInstanceOf(Processor::class, $this->processor);
+        $this->assertInstanceOf(Processor::class, $this->processor);
     }
 
     public function testMakeMethodShouldReturnArray()
@@ -37,9 +35,7 @@ class WeeklyProcessorTest extends TestCase
 
     public function testMustTerminateInSameDate()
     {
-
-        for($x=0; $x< 50; $x++) {
-
+        for ($x=0; $x< 50; $x++) {
             $startWeek = rand(0, 5);
             Carbon::setWeekStartsAt($startWeek);
 
@@ -51,9 +47,6 @@ class WeeklyProcessorTest extends TestCase
             $dates = (new WeeklyProcessor($start, $end, $startWeek))->make();
 
             $this->assertEquals($expected, end($dates)['endDate']);
-
         }
-
     }
-
 }

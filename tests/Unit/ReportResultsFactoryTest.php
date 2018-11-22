@@ -2,7 +2,6 @@
 
 namespace Test\Unit;
 
-
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use ReportBuilder\Factories\ReportResultsFactory;
@@ -13,7 +12,6 @@ use Tests\Utilities\FakeRepository;
 
 class ReportResultsFactoryTest extends TestCase
 {
-
     protected $reportables;
     protected $dates;
     protected $parameters;
@@ -21,7 +19,7 @@ class ReportResultsFactoryTest extends TestCase
     protected function setUp()
     {
         $this->reportables = (new ReportableCollection())->add(FakeRepository::class, 'popular');
-        $this->dates = (new DailyProcessor(Carbon::createFromDate(2018,8,7), Carbon::createFromDate(2018,8,17), 0))->make();
+        $this->dates = (new DailyProcessor(Carbon::createFromDate(2018, 8, 7), Carbon::createFromDate(2018, 8, 17), 0))->make();
         $this->parameters =  [
             'param' => 'val',
             'parameter' => 'value'
@@ -48,7 +46,7 @@ class ReportResultsFactoryTest extends TestCase
 
     public function testShouldAddDates()
     {
-        $factory = ReportResultsFactory::make($this->reportables, null, $this->dates );
+        $factory = ReportResultsFactory::make($this->reportables, null, $this->dates);
         $datesFromFactory = getProtectedValue($factory, 'dates');
         $this->assertEquals(11, count($datesFromFactory));
         $this->assertInstanceOf(Carbon::class, $datesFromFactory[0]['startDate']);
@@ -57,8 +55,7 @@ class ReportResultsFactoryTest extends TestCase
 
     public function testShouldAddParametersAndDates()
     {
-
-        $factory = ReportResultsFactory::make($this->reportables, $this->parameters, $this->dates );
+        $factory = ReportResultsFactory::make($this->reportables, $this->parameters, $this->dates);
         $parameters = getProtectedValue($factory, 'parameters');
         $dates = getProtectedValue($factory, 'dates');
 
@@ -66,6 +63,4 @@ class ReportResultsFactoryTest extends TestCase
         $this->assertEquals(11, count($dates));
         $this->assertInstanceOf(Carbon::class, $dates[0]['startDate']);
     }
-
-
 }

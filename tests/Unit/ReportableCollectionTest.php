@@ -2,14 +2,12 @@
 
 namespace Test\Unit;
 
-
 use PHPUnit\Framework\TestCase;
 use ReportBuilder\ReportableCollection;
 use Tests\Utilities\FakeRepository;
 
 class ReportableCollectionTest extends TestCase
 {
-
     protected $collection;
 
     protected function setUp()

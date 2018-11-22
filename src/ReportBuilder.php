@@ -2,11 +2,11 @@
 
 namespace ReportBuilder;
 
-
 use ReportBuilder\Factories\ReportBuilderFactory;
 use ReportBuilder\Factories\ReportResultsFactory;
 
-class ReportBuilder {
+class ReportBuilder
+{
 
     /**
      * Results will apply methods
@@ -68,8 +68,7 @@ class ReportBuilder {
      */
     public function addReportables(array $array) : self
     {
-
-        foreach ( $array as $class => $methods) {
+        foreach ($array as $class => $methods) {
             $this->addReportable($class, $methods);
         }
 
@@ -101,11 +100,8 @@ class ReportBuilder {
     /**
      * @return array
      */
-    public function results () : array
+    public function results() : array
     {
         return (ReportResultsFactory::make($this->reportables, $this->parameters, $this->datesInterval))->results();
     }
-
-
-
 }

@@ -2,7 +2,6 @@
 
 namespace Test\Unit;
 
-
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use ReportBuilder\Processors\MonthlyProcessor;
@@ -13,7 +12,6 @@ use Test\Utilities\FakeRepository;
 
 class ReportBuilderTest extends TestCase
 {
-
     protected $builder;
 
     protected function setUp()
@@ -59,7 +57,6 @@ class ReportBuilderTest extends TestCase
 
     public function testShouldAddArrayOfReportables()
     {
-
         $reportables = [
             'FakeRepository::class' => ['all', 'between'],
             'OtherClass::class' => 'myMethod'
@@ -70,7 +67,5 @@ class ReportBuilderTest extends TestCase
         $expected = getProtectedValue($this->builder, 'reportables');
 
         $this->assertEquals($expected->get(), $reportables);
-
     }
-
 }

@@ -9,11 +9,8 @@ use ReportBuilder\Processors\Processor as Base;
 
 class DailyProcessor extends Base implements Processor
 {
-
-
     public function make(): array
     {
-
         $days = $this->startDate->diffInDays($this->endDate);
         $ds    = (clone $this->startDate)->startOfDay();
 
@@ -25,8 +22,5 @@ class DailyProcessor extends Base implements Processor
         }
 
         return $dates;
-
     }
-
-
 }

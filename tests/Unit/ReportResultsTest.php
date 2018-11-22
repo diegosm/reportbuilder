@@ -2,7 +2,6 @@
 
 namespace Test\Unit;
 
-
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use ReportBuilder\Processors\DailyProcessor;
@@ -12,7 +11,6 @@ use Test\Utilities\FakeRepository;
 
 class ReportResultsTest extends TestCase
 {
-
     protected $results;
     protected $reportables;
     protected $dates;
@@ -75,7 +73,6 @@ class ReportResultsTest extends TestCase
             'Test\Utilities\FakeRepository' =>  'value'
         ]
         ], $results);
-
     }
 
     public function testCouldHaveParameterAndDatesInResults()
@@ -94,8 +91,8 @@ class ReportResultsTest extends TestCase
                 'startDate' => Carbon::now()->format('d/m/Y 00:00:00'),
                 'endDate' => Carbon::now()->format('d/m/Y 23:59:59'),
                 'parameter' => 'Parameter value: value'
-            ], end($results['results']['Test\Utilities\FakeRepository']));
+            ],
+            end($results['results']['Test\Utilities\FakeRepository'])
+        );
     }
-
-
 }

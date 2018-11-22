@@ -7,7 +7,6 @@ use ReportBuilder\ReportBuilder;
 
 class ReportBuilderStaticConstructorTest extends TestCase
 {
-
     protected $builder;
 
     protected function setUp()
@@ -20,5 +19,4 @@ class ReportBuilderStaticConstructorTest extends TestCase
     {
         $this->assertInstanceOf(ReportBuilder::class, $this->builder);
     }
-
 }

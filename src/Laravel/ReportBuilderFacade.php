@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Facade;
 
 class ReportBuilderFacade extends Facade
 {
-
-    protected static function getFacadeAccessor() { return 'ReportBuilder'; }
-
+    protected static function getFacadeAccessor()
+    {
+        return 'ReportBuilder';
+    }
 }

@@ -2,10 +2,8 @@
 
 namespace ReportBuilder;
 
-
 class ReportResults
 {
-
     protected $reportables;
     protected $dates;
     protected $parameters;
@@ -49,9 +47,9 @@ class ReportResults
      *
      * @return array
      */
-    public function results ()
+    public function results()
     {
-        return ( isset($this->dates) && count($this->dates) > 0 ) ? $this->resultsWithDates() : $this->resultsWithoutDates();
+        return (isset($this->dates) && count($this->dates) > 0) ? $this->resultsWithDates() : $this->resultsWithoutDates();
     }
 
 
@@ -60,51 +58,39 @@ class ReportResults
      */
     private function resultsWithDates()
     {
-        
         $data = [];
 
-        for ( $x=0; $x < count($this->dates); $x++) {
-
-            foreach ( $this->reportables->get() as $reportable  => $methods ) {
-
-                if ( is_array($methods) ) {
-
+        for ($x=0; $x < count($this->dates); $x++) {
+            foreach ($this->reportables->get() as $reportable  => $methods) {
+                if (is_array($methods)) {
                     for ($y=0; $y<count($methods); $y++) {
                         $data[$reportable][$methods[$y]][] = $this->getResult($reportable, $methods[$y], $this->dates[$x]['startDate'], $this->dates[$x]['endDate']);
                     }
-
-                }else{
+                } else {
                     $data[$reportable][] = $this->getResult($reportable, $methods, $this->dates[$x]['startDate'], $this->dates[$x]['endDate']);
                 }
             }
-
         }
 
         return [ 'dates' => $this->dates, 'results' => $data];
-
     }
 
 
     private function resultsWithoutDates()
     {
-
         $data = [];
 
-        foreach ( $this->reportables->get() as $reportable  => $methods ) {
-
-            if ( is_array($methods) ) {
-
+        foreach ($this->reportables->get() as $reportable  => $methods) {
+            if (is_array($methods)) {
                 for ($y=0; $y<count($methods); $y++) {
                     $data[$reportable][$methods[$y]][] = $this->getResult($reportable, $methods[$y]);
                 }
-
-            }else{
+            } else {
                 $data[$reportable] = $this->getResult($reportable, $methods);
             }
         }
 
         return [ 'results' => $data];
-
     }
 
     /**
@@ -116,7 +102,7 @@ class ReportResults
      * @param $endDate
      * @return mixed
      */
-    private function getResult ($class, $method, $startDate = null, $endDate = null)
+    private function getResult($class, $method, $startDate = null, $endDate = null)
     {
 
         // Get Parameters from class and method
@@ -128,20 +114,17 @@ class ReportResults
         $parameters2Method = [];
 
         // Put parameters in order according to order of method
-        foreach($rClassParameters as $param ) {
-
-            if ( $parameters ) {
-                foreach($parameters as $key => $value ) {
+        foreach ($rClassParameters as $param) {
+            if ($parameters) {
+                foreach ($parameters as $key => $value) {
                     if ($key == $param->name) {
                         $parameters2Method[] = $value;
                     }
                 }
             }
-
         }
 
         return (new $class)->$method(...$parameters2Method);
-
     }
 
 
@@ -149,21 +132,20 @@ class ReportResults
     {
 
         // if is only parameters
-        if ( isset($this->parameters) && !isset($startDate, $endDate) ) {
+        if (isset($this->parameters) && !isset($startDate, $endDate)) {
             $parameters = $this->parameters;
 
         // if is parameters and dates
-        }else if ( isset($this->parameters) && isset($startDate, $endDate) ) {
+        } elseif (isset($this->parameters) && isset($startDate, $endDate)) {
             $parameters = array_merge([ 'startDate' => $startDate, 'endDate' => $endDate], $this->parameters);
         // if is only dates
-        }else if ( isset($startDate, $endDate) ) {
+        } elseif (isset($startDate, $endDate)) {
             $parameters = [ 'startDate' => $startDate, 'endDate' => $endDate];
         // if is without dates and parameters
-        }else{
+        } else {
             $parameters = null;
         }
 
         return $parameters;
     }
-
 }

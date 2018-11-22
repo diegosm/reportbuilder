@@ -6,7 +6,6 @@ use Carbon\Carbon;
 
 class Processor
 {
-
     protected $startDate;
     protected $endDate;
 
@@ -21,5 +20,4 @@ class Processor
             throw new \Exception('Error, start date must be inferior end date');
         }
     }
-
 }
