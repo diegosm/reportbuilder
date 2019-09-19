@@ -13,7 +13,11 @@ class WeeklyProcessorTest extends TestCase
 
     protected function setUp()
     {
-        $this->processor = new WeeklyProcessor(Carbon::createFromDate(2018, 7, 31), Carbon::createFromDate(2018, 8, 6), 0);
+        $this->processor = new WeeklyProcessor(
+            Carbon::createFromDate(2018, 7, 31),
+            Carbon::createFromDate(2018, 8, 6),
+            0
+        );
         parent::setUp();
     }
 
@@ -35,7 +39,7 @@ class WeeklyProcessorTest extends TestCase
 
     public function testMustTerminateInSameDate()
     {
-        for ($x=0; $x< 50; $x++) {
+        for ($x = 0; $x < 50; $x++) {
             $startWeek = rand(0, 5);
             Carbon::setWeekStartsAt($startWeek);
 

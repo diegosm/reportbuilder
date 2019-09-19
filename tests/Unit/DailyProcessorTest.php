@@ -13,7 +13,11 @@ class DailyProcessorTest extends TestCase
 
     protected function setUp()
     {
-        $this->processor = new DailyProcessor(Carbon::createFromDate(2018, 8, 7), Carbon::createFromDate(2018, 8, 17), 0);
+        $this->processor = new DailyProcessor(
+            Carbon::createFromDate(2018, 8, 7),
+            Carbon::createFromDate(2018, 8, 17),
+            0
+        );
         $this->dates = $this->processor->make();
         parent::setUp();
     }

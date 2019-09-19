@@ -9,7 +9,7 @@ class Processor
     protected $startDate;
     protected $endDate;
 
-    public function __construct(Carbon $startDate = null, Carbon $endDate = null, $firstDayWeek=0)
+    public function __construct(Carbon $startDate = null, Carbon $endDate = null, $firstDayWeek = 0)
     {
         Carbon::setWeekStartsAt($firstDayWeek);
         $this->startDate = $startDate ?: Carbon::now();

@@ -9,12 +9,11 @@ use ReportBuilder\Processors\WeeklyProcessor;
 
 class ReportBuilderFactory
 {
-    public static function create(Carbon $startDate, Carbon $endDate, $firstDayWeek=0)
+    public static function create(Carbon $startDate, Carbon $endDate, $firstDayWeek = 0)
     {
         $days = $startDate->diffInDays($endDate);
 
         switch ($days) {
-
             case ($days > 30):
                 return new MonthlyProcessor($startDate, $endDate, $firstDayWeek);
             break;

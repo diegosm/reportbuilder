@@ -49,9 +49,10 @@ class ReportResults
      */
     public function results()
     {
-        return (isset($this->dates) && count($this->dates) > 0) ? $this->resultsWithDates() : $this->resultsWithoutDates();
+        return (isset($this->dates) && count($this->dates) > 0) ?
+            $this->resultsWithDates() :
+            $this->resultsWithoutDates();
     }
-
 
     /**
      *
@@ -60,14 +61,24 @@ class ReportResults
     {
         $data = [];
 
-        for ($x=0; $x < count($this->dates); $x++) {
-            foreach ($this->reportables->get() as $reportable  => $methods) {
+        for ($x = 0; $x < count($this->dates); $x++) {
+            foreach ($this->reportables->get() as $reportable => $methods) {
                 if (is_array($methods)) {
                     for ($y=0; $y<count($methods); $y++) {
-                        $data[$reportable][$methods[$y]][] = $this->getResult($reportable, $methods[$y], $this->dates[$x]['startDate'], $this->dates[$x]['endDate']);
+                        $data[$reportable][$methods[$y]][] = $this->getResult(
+                            $reportable,
+                            $methods[$y],
+                            $this->dates[$x]['startDate'],
+                            $this->dates[$x]['endDate']
+                        );
                     }
                 } else {
-                    $data[$reportable][] = $this->getResult($reportable, $methods, $this->dates[$x]['startDate'], $this->dates[$x]['endDate']);
+                    $data[$reportable][] = $this->getResult(
+                        $reportable,
+                        $methods,
+                        $this->dates[$x]['startDate'],
+                        $this->dates[$x]['endDate']
+                    );
                 }
             }
         }
@@ -80,7 +91,7 @@ class ReportResults
     {
         $data = [];
 
-        foreach ($this->reportables->get() as $reportable  => $methods) {
+        foreach ($this->reportables->get() as $reportable => $methods) {
             if (is_array($methods)) {
                 for ($y=0; $y<count($methods); $y++) {
                     $data[$reportable][$methods[$y]][] = $this->getResult($reportable, $methods[$y]);
@@ -98,13 +109,13 @@ class ReportResults
      *
      * @param $class
      * @param $method
-     * @param $startDate
-     * @param $endDate
+     * @param null $startDate
+     * @param null $endDate
      * @return mixed
+     * @throws \ReflectionException
      */
     private function getResult($class, $method, $startDate = null, $endDate = null)
     {
-
         // Get Parameters from class and method
         $rClass = (new \ReflectionClass(new $class));
         $rClassParameters = $rClass->getMethod($method)->getParameters();
@@ -127,10 +138,8 @@ class ReportResults
         return (new $class)->$method(...$parameters2Method);
     }
 
-
     private function getParameters($startDate = null, $endDate = null)
     {
-
         // if is only parameters
         if (isset($this->parameters) && !isset($startDate, $endDate)) {
             $parameters = $this->parameters;

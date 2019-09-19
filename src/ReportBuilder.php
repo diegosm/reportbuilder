@@ -7,7 +7,6 @@ use ReportBuilder\Factories\ReportResultsFactory;
 
 class ReportBuilder
 {
-
     /**
      * Results will apply methods
      * @var array
@@ -42,9 +41,12 @@ class ReportBuilder
      * @param int $firstDayWeek
      * @return $this
      */
-    public function addPeriod($startDate=null, $endDate=null, $processor=null, $firstDayWeek=0)
+    public function addPeriod($startDate = null, $endDate = null, $processor = null, $firstDayWeek = 0)
     {
-        $processor = is_null($processor) ? ReportBuilderFactory::create($startDate, $endDate, $firstDayWeek) : new $processor($startDate, $endDate, $firstDayWeek);
+        $processor = is_null($processor) ?
+            ReportBuilderFactory::create($startDate, $endDate, $firstDayWeek) :
+            new $processor($startDate, $endDate, $firstDayWeek);
+
         $this->datesInterval = $processor->make();
         return $this;
     }
@@ -66,7 +68,7 @@ class ReportBuilder
      * @param array $array
      * @return $this
      */
-    public function addReportables(array $array) : self
+    public function addReportables(array $array): self
     {
         foreach ($array as $class => $methods) {
             $this->addReportable($class, $methods);
@@ -81,7 +83,7 @@ class ReportBuilder
      * @param array $parameters
      * @return ReportBuilder
      */
-    public function addParameters(array $parameters) : self
+    public function addParameters(array $parameters): self
     {
         $this->parameters = array_merge($parameters, $this->parameters);
         return $this;
@@ -100,7 +102,7 @@ class ReportBuilder
     /**
      * @return array
      */
-    public function results() : array
+    public function results(): array
     {
         return (ReportResultsFactory::make($this->reportables, $this->parameters, $this->datesInterval))->results();
     }
