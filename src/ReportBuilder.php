@@ -68,7 +68,7 @@ class ReportBuilder
      * @param array $array
      * @return $this
      */
-    public function addReportables(array $array): self
+    public function addReportables(array $array = []): self
     {
         foreach ($array as $class => $methods) {
             $this->addReportable($class, $methods);
@@ -83,8 +83,14 @@ class ReportBuilder
      * @param array $parameters
      * @return ReportBuilder
      */
-    public function addParameters(array $parameters): self
+    public function addParameters(array $parameters = []): self
     {
+        $parameters = array_filter($parameters, function ($value) {
+            if (!empty($value)) {
+                return true;
+            }
+        });
+
         $this->parameters = array_merge($parameters, $this->parameters);
         return $this;
     }
@@ -96,7 +102,7 @@ class ReportBuilder
      */
     public function addParameter($key, $value)
     {
-        return $this->addParameters([ $key => $value ]);
+        return $this->addParameters([$key => $value]);
     }
 
     /**
