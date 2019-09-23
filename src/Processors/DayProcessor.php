@@ -3,7 +3,6 @@
 namespace ReportBuilder\Processors;
 
 // use Carbon\CarbonPeriod;
-use Carbon\Carbon;
 use ReportBuilder\Contracts\Processor;
 use ReportBuilder\Processors\Processor as Base;
 

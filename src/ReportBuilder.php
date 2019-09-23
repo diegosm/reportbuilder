@@ -23,7 +23,6 @@ class ReportBuilder
      */
     protected $reportables;
 
-
     public function __construct()
     {
         $this->reportables = new ReportableCollection();
