@@ -9,7 +9,7 @@ class ReportBuilderStaticConstructorTest extends TestCase
 {
     protected $builder;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->builder = ReportBuilder::make();
         parent::setUp();

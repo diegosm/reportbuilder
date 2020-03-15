@@ -16,7 +16,7 @@ class ReportResultsTest extends TestCase
     protected $dates;
 
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->reportables = (new ReportableCollection())->add(FakeRepository::class, [ 'popular', 'between']);
         $this->dates = (new DailyProcessor(Carbon::now()->subDays(2), Carbon::now()))->make();

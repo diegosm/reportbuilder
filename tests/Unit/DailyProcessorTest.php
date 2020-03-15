@@ -11,11 +11,16 @@ class DailyProcessorTest extends TestCase
     protected $processor;
     protected $dates;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->processor = new DailyProcessor(Carbon::createFromDate(2018, 8, 7), Carbon::createFromDate(2018, 8, 17), 0);
-        $this->dates = $this->processor->make();
         parent::setUp();
+        $this->processor = new DailyProcessor(
+            Carbon::createFromDate(2018, 8, 7),
+            Carbon::createFromDate(2018, 8, 17),
+            0
+        );
+        $this->dates = $this->processor->make();
+
     }
 
     public function testShouldHaveSameLastDay()

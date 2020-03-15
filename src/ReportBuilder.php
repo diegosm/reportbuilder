@@ -44,7 +44,17 @@ class ReportBuilder
      */
     public function addPeriod($startDate=null, $endDate=null, $processor=null, $firstDayWeek=0)
     {
-        $processor = is_null($processor) ? ReportBuilderFactory::create($startDate, $endDate, $firstDayWeek) : new $processor($startDate, $endDate, $firstDayWeek);
+        $processor = is_null($processor) ? ReportBuilderFactory::create(
+            $startDate,
+            $endDate,
+            $firstDayWeek
+        ) :
+            new $processor(
+                $startDate,
+                $endDate,
+                $firstDayWeek
+            );
+
         $this->datesInterval = $processor->make();
         return $this;
     }

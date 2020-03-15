@@ -14,7 +14,7 @@ class ReportBuilderTest extends TestCase
 {
     protected $builder;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->builder = new ReportBuilder();
         $this->builder->addPeriod(Carbon::parse("2018-10-11"), Carbon::parse("2018-10-16"), null, 1);

@@ -55,7 +55,6 @@ class WeeklyProcessor extends Base implements Processor
         }
     }
 
-
     private function getIndice()
     {
         return count($this->dates);

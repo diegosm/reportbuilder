@@ -11,9 +11,14 @@ class WeeklyProcessorTest extends TestCase
 {
     protected $processor;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->processor = new WeeklyProcessor(Carbon::createFromDate(2018, 7, 31), Carbon::createFromDate(2018, 8, 6), 0);
+        $this->processor = new WeeklyProcessor(
+            Carbon::createFromDate(2018, 7, 31),
+            Carbon::createFromDate(2018, 8, 6),
+            0
+        );
+
         parent::setUp();
     }
 

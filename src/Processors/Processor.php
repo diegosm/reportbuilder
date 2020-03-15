@@ -15,7 +15,6 @@ class Processor
         $this->startDate = $startDate ?: Carbon::now();
         $this->endDate = $endDate ?: Carbon::now()->addDays(30);
 
-        // verifica se data inicial é maior ou igual a final, se for retorna erro.
         if ($this->startDate->gte($this->endDate)) {
             throw new \Exception('Error, start date must be inferior end date');
         }

@@ -10,7 +10,7 @@ class ReportableCollectionTest extends TestCase
 {
     protected $collection;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->collection = new ReportableCollection();
         parent::setUp();
