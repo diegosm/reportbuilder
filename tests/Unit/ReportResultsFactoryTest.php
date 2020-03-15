@@ -19,7 +19,12 @@ class ReportResultsFactoryTest extends TestCase
     protected function setUp() : void
     {
         $this->reportables = (new ReportableCollection())->add(FakeRepository::class, 'popular');
-        $this->dates = (new DailyProcessor(Carbon::createFromDate(2018, 8, 7), Carbon::createFromDate(2018, 8, 17), 0))->make();
+        $this->dates = (new DailyProcessor(
+            Carbon::createFromDate(2018, 8, 7),
+            Carbon::createFromDate(2018, 8, 17),
+            0
+        ))->make();
+
         $this->parameters =  [
             'param' => 'val',
             'parameter' => 'value'
